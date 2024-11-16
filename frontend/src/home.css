@@ -1,0 +1,64 @@
+/* App.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .containe {
+    background: url('./images/homeBG.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .username {
+    flex-grow: 1;
+    font-size: 1.5em;
+    text-align: center;
+
+  }
+  
+  .streak {
+    font-size: 1.5em;
+    position: absolute; /* Change to absolute positioning */
+    top: 5px; /* Distance from top */
+    right: 60px;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .button {
+    padding: 20px 40px; /* Increase padding for larger button size */
+    font-size: 1.5em; /* Larger font size */
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Slightly rounder edges */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  

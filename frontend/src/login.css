@@ -1,0 +1,104 @@
+/* src/LoginPage.css */
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    background-image: url('./images/RLbg.jpg'); /* Replace with a cartoon background image */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .back-button {
+    position: absolute; /* Change to absolute positioning */
+    top: 20px; /* Distance from top */
+    left: 20px; /* Distance from left */
+    cursor: pointer;
+    color: white; /* Icon color */
+  }
+  
+  .login-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white; /* Set background color to white */
+    color: black;      
+    
+  }
+  
+  .login-button {
+    padding: 12px 24px; /* Increased padding */
+    border: none; /* Remove border */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    font-size: 18px; /* Larger font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s; /* Smooth transition effects */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  /* Hover effect */
+  .login-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  /* Active effect */
+  .login-button:active {
+    background-color: #388e3c; /* Even darker green on click */
+    transform: scale(0.95); /* Slightly shrink on click */
+  }
+  
+  /* Focus effect for accessibility */
+  .login-button:focus {
+    outline: 2px solid #2e7d32; /* Darker outline on focus */
+    outline-offset: 2px; /* Space between the button and outline */
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+  }
+  
+  .signup-link a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  
