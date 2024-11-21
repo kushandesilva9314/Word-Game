@@ -41,6 +41,10 @@ const Home = () => {
     navigate('/game');
   };
   
+
+  const openSpecialmode = () => {
+    navigate('/specialmode');
+  };
   return (
     <div className="containe">
       <header className="header">
@@ -54,7 +58,7 @@ const Home = () => {
       </header>
       <main className="main-content">
         <button className="button" onClick={openGame}>Play</button>
-        <button className="button">
+        <button className="button" onClick={openSpecialmode}>
           <span role="img" aria-label="streak">
             🌟
           </span>

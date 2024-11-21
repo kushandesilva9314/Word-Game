@@ -6,6 +6,8 @@ import RegisterPage from './register';
 import MainPage from './main';
 import HomePage from './home';
 import GamePage from './game';
+import SpecialMode from './specialmode';
+
 
 
 
@@ -19,7 +21,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/game" element={<GamePage />} />    
+        <Route path="/game" element={<GamePage />} />
+        <Route path="/specialmode" element={<SpecialMode />} />
       </Routes>
     </BrowserRouter>
     </div>
