@@ -5,7 +5,7 @@ function Win(){
 
     return (
         <>
-            <h1 className='win-style mb-5'>You Win!</h1>
+            <h1 className='win-style mb-5'>You Won!</h1>
             <button onClick={refreshPage} className='btn btn-secondary d-block mx-auto my-3 fs-4'>Play again!</button>
         </>
     );

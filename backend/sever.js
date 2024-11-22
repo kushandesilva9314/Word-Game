@@ -50,14 +50,41 @@ db.connect(err => {
     console.log("Connected to MySQL database");
 });
 
+// Variable to store the username globally for session-based use
+let UN = ''; 
+
 // Route: Home
 app.get('/home', (req, res) => {
     if (req.session.Username) {
+        UN = req.session.Username; // Save the username to the global variable
         return res.json({ valid: true, Username: req.session.Username });
     } else {
         return res.json({ valid: false });
     }
 });
+
+// Route: Get user's streak
+app.get('/streak', (req, res) => {
+    if (!UN) {
+        return res.json({ success: false, message: "User not logged in" });
+    }
+
+    const sql = "SELECT Streak FROM gameusers WHERE Username = ?";
+    db.query(sql, [UN], (err, result) => {
+        if (err) {
+            console.error("Error fetching streak:", err);
+            return res.json({ success: false, message: "Database error", error: err });
+        }
+
+        if (result.length > 0) {
+            return res.json({ success: true, streak: result[0].Streak });
+        } else {
+            return res.json({ success: false, message: "User not found" });
+        }
+    });
+});
+
+
 
 // Load wordlist data
 const wordlistData = JSON.parse(fs.readFileSync(path.join(__dirname, 'wordlist.json'), 'utf8'));

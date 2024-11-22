@@ -1,64 +1,214 @@
-/* App.css */
+/* Global Styles */
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-  
-  .containe {
-    background: url('./images/homeBG.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .header {
-    position: absolute;
-    top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-  
-  .username {
-    flex-grow: 1;
-    font-size: 1.5em;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a202c; /* Dark background for the body */
+}
 
-  }
-  
-  .streak {
-    font-size: 1.5em;
-    position: absolute; /* Change to absolute positioning */
-    top: 5px; /* Distance from top */
-    right: 60px;
-  }
-  
+/* Main container */
+.containe {
+  background: url('./images/homeBG.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Header with username, streak, and country selection */
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Aligns the username to the top right */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Aligns content to the right */
+  padding: 0 20px;
+  z-index: 10;
+}
+
+/* Username */
+.username {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #63b3ed; /* Accent color for username */
+  text-align: right; /* Aligns text to the right */
+  z-index: 10; /* Make sure username stays on top */
+  margin-left: auto; /* Ensures it aligns to the right */
+}
+
+/* Streak */
+.streak {
+  font-size: 2em;
+  font-weight: 700;
+  color: #fbbf24;
+  position: absolute;
+  right: 20px; /* Keeps it on the right */
+  top: 50%; /* Centers it vertically */
+  transform: translateY(-50%); /* Adjusts vertical alignment */
+  display: flex;
+  align-items: center;
+}
+
+.streak span {
+  margin-right: 0.5rem;
+  font-size: 2.2rem; /* Larger size for the streak flame icon */
+}
+
+/* Country Selection */
+.country-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.country-label {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  color: #fbbf24;
+}
+
+.country-dropdown {
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 200px;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.6); /* Ensure dropdown background is dark */
+  transition: background-color 0.3s;
+}
+
+.country-dropdown:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1); /* Lighten background on focus */
+}
+
+.country-dropdown option {
+  background-color: #333; /* Dark background for options */
+  color: #fff; /* Light text color */
+  padding: 8px; /* Padding for readability */
+}
+
+.country-dropdown option:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Highlight option on hover */
+}
+
+.country-dropdown:disabled {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Country Information Display */
+.country-info {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  position: absolute; /* Position relative to its nearest positioned ancestor */
+  top: 20px; /* Move it to the top of the screen */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Offset by 50% of its width to center it */
+  z-index: 10; /* Ensure it's on top of other elements */
+}
+
+.country-info h5 {
+  color: #fbbf24;
+}
+
+
+
+/* Main content area with buttons */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 10;
+}
+
+/* Button Styles */
+.button {
+  padding: 20px 40px;
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-5px);
+}
+
+/* Specific Button Styles for Different Actions */
+.button.play {
+  background-color: rgba(34, 193, 195, 0.8);
+}
+
+.button.play:hover {
+  background-color: rgba(34, 193, 195, 1);
+}
+
+.button.special {
+  background-color: rgba(248, 113, 29, 0.8);
+}
+
+.button.special:hover {
+  background-color: rgba(248, 113, 29, 1);
+}
+
+.button.quit {
+  background-color: rgba(255, 59, 48, 0.8);
+}
+
+.button.quit:hover {
+  background-color: rgba(255, 59, 48, 1);
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
   .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    gap: 15px;
   }
-  
+
   .button {
-    padding: 20px 40px; /* Increase padding for larger button size */
-    font-size: 1.5em; /* Larger font size */
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    border-radius: 8px; /* Slightly rounder edges */
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    padding: 15px 30px;
   }
-  
-  .button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 480px) {
+  .username {
+    font-size: 1.2em;
   }
-  
+
+  .streak {
+    font-size: 1.3em;
+    right: 30px;
+  }
+
+  .button {
+    font-size: 1.0em;
+    padding: 12px 24px;
+  }
+
+  .country-dropdown {
+    width: 100%;
+  }
+}
