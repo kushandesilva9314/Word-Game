@@ -36,6 +36,58 @@ function Gamebox() {
         }
     }
 
+    // Function to update the streak
+    async function incrementStreak() {
+        const URL = 'http://localhost:8081/increment-streak';
+
+        try {
+            const response = await fetch(URL, {
+                method: 'POST',
+                credentials: 'include', // Include cookies for session
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                console.log('Streak incremented successfully:', result.newStreak);
+            } else {
+                console.error('Failed to increment streak:', result.message);
+            }
+        } catch (error) {
+            console.error('Error incrementing streak:', error);
+        }
+    }
+
+    // Function to reset the streak
+async function resetStreak() {
+    const URL = 'http://localhost:8081/reset-streak';
+
+    try {
+        const response = await fetch(URL, {
+            method: 'POST',
+            credentials: 'include', // Include cookies for session
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ lost: true }), // Indicate the game is lost
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            console.log('Streak reset successfully');
+        } else {
+            console.error('Failed to reset streak:', result.message);
+        }
+    } catch (error) {
+        console.error('Error resetting streak:', error);
+    }
+}
+
+
     // Disable inputs for a specific row
     function disableBoxRow(nodes) {
         nodes.forEach((node) => {
@@ -109,6 +161,17 @@ function Gamebox() {
             setLife(life - 1); // Deduct a life
         }
     }
+
+    useEffect(() => {
+        if (life === 1000) {
+            // Player won the game, increment the streak
+            incrementStreak();
+        } else if (life === 0) {
+            // Player lost the game, reset the streak
+            resetStreak();
+        }
+    }, [life]);
+    
 
     // Game setup: define rows and event handlers
     const lifeOne = document.querySelectorAll('.box0');

@@ -85,6 +85,78 @@ app.get('/streak', (req, res) => {
 });
 
 
+// Route: Increment streak
+app.post('/increment-streak', (req, res) => {
+    if (!UN) {
+        return res.json({ success: false, message: "User not logged in" });
+    }
+
+    // Fetch the current streak for the user
+    const fetchStreakSql = "SELECT Streak FROM gameusers WHERE Username = ?";
+    db.query(fetchStreakSql, [UN], (err, result) => {
+        if (err) {
+            console.error("Error fetching streak:", err);
+            return res.json({ success: false, message: "Database error", error: err });
+        }
+
+        if (result.length > 0) {
+            const currentStreak = result[0].Streak;
+            const newStreak = currentStreak + 1;
+
+            // Update the streak in the database
+            const updateStreakSql = "UPDATE gameusers SET Streak = ? WHERE Username = ?";
+            db.query(updateStreakSql, [newStreak, UN], (updateErr) => {
+                if (updateErr) {
+                    console.error("Error updating streak:", updateErr);
+                    return res.json({ success: false, message: "Error updating streak", error: updateErr });
+                }
+
+                return res.json({ success: true, message: "Streak incremented successfully", newStreak });
+            });
+        } else {
+            return res.json({ success: false, message: "User not found" });
+        }
+    });
+});
+
+// Route: Get and reset streak if lost
+app.post('/reset-streak', (req, res) => {
+    if (!UN) {
+        return res.json({ success: false, message: "User not logged in" });
+    }
+
+    const { lost } = req.body; // Expecting `lost` to be passed as part of the request body
+
+    if (!lost) {
+        // If the game is not lost, just return the current streak
+        const fetchStreakSql = "SELECT Streak FROM gameusers WHERE Username = ?";
+        db.query(fetchStreakSql, [UN], (err, result) => {
+            if (err) {
+                console.error("Error fetching streak:", err);
+                return res.json({ success: false, message: "Database error", error: err });
+            }
+
+            if (result.length > 0) {
+                return res.json({ success: true, streak: result[0].Streak });
+            } else {
+                return res.json({ success: false, message: "User not found" });
+            }
+        });
+    } else {
+        // If the game is lost, reset the streak to 0
+        const resetStreakSql = "UPDATE gameusers SET Streak = 0 WHERE Username = ?";
+        db.query(resetStreakSql, [UN], (err, result) => {
+            if (err) {
+                console.error("Error resetting streak:", err);
+                return res.json({ success: false, message: "Error resetting streak", error: err });
+            }
+
+            return res.json({ success: true, message: "Streak reset to 0" });
+        });
+    }
+});
+
+
 
 // Load wordlist data
 const wordlistData = JSON.parse(fs.readFileSync(path.join(__dirname, 'wordlist.json'), 'utf8'));

@@ -212,3 +212,18 @@ body, html {
     width: 100%;
   }
 }
+/* Button Styles for Special Mode */
+.button.special {
+  background-color: rgba(248, 113, 29, 0.8);
+}
+
+.button.special:hover {
+  background-color: rgba(248, 113, 29, 1);
+}
+
+/* Lock/Unlock icon styling */
+.button.special span[aria-label="streak"] {
+  margin-right: 10px; /* Space between the icon and text */
+  font-size: 1.5em; /* Adjust icon size */
+}
+

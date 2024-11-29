@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const Home = () => {
   const [name, setName] = useState("");
   const [Streak, setStreak] = useState("");
@@ -108,6 +109,9 @@ const Home = () => {
     setSelectedCountry(country);
   };
 
+  // Disable special mode if streak is less than 4
+  const isSpecialModeDisabled = Streak < 4;
+
   return (
     <div className="containe">
       <header className="header">
@@ -181,16 +185,18 @@ const Home = () => {
         </button>
         <button
           className="button special"
-          onClick={openSpecialmode}
+          onClick={isSpecialModeDisabled ? null : openSpecialmode}
           onMouseEnter={handleMouseEnterS}
           onMouseLeave={handleMouseLeaveS}
+          disabled={isSpecialModeDisabled}
         >
           <span role="img" aria-label="streak">
-            🌟
+            {Streak < 4 ? "🔒" : "🔓"}{" "}
+         
           </span>
           Special Mode
-          {showTooltipS && (
-          <div className="fixed inset-0 flex justify-center items-center">
+          {showTooltipS && Streak >= 4 && (
+            <div className="fixed inset-0 flex justify-center items-center">
               <div className="bg-black p-6 text-center">
                 <p>
                   <strong>How to Play:</strong>
