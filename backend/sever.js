@@ -6,18 +6,18 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import fs from 'fs'; // For reading wordlist.json
+import fs from 'fs'; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Middleware setup
+
 app.use(cors({
-    origin: ['http://localhost:3000'], // Allow requests from the React frontend
+    origin: ['http://localhost:3000'], 
     methods: ["POST", "GET"],
-    credentials: true // Allow credentials (session cookies)
+    credentials: true 
 }));
 
 app.use(express.json());
@@ -29,12 +29,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, // Set to `true` if using HTTPS
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
+        secure: false, 
+        maxAge: 1000 * 60 * 60 * 24 
     }
 }));
 
-// MySQL database connection
+
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -50,20 +50,20 @@ db.connect(err => {
     console.log("Connected to MySQL database");
 });
 
-// Variable to store the username globally for session-based use
+
 let UN = ''; 
 
-// Route: Home
+
 app.get('/home', (req, res) => {
     if (req.session.Username) {
-        UN = req.session.Username; // Save the username to the global variable
+        UN = req.session.Username; 
         return res.json({ valid: true, Username: req.session.Username });
     } else {
         return res.json({ valid: false });
     }
 });
 
-// Route: Get user's streak
+
 app.get('/streak', (req, res) => {
     if (!UN) {
         return res.json({ success: false, message: "User not logged in" });
@@ -85,13 +85,13 @@ app.get('/streak', (req, res) => {
 });
 
 
-// Route: Increment streak
+
 app.post('/increment-streak', (req, res) => {
     if (!UN) {
         return res.json({ success: false, message: "User not logged in" });
     }
 
-    // Fetch the current streak for the user
+    
     const fetchStreakSql = "SELECT Streak FROM gameusers WHERE Username = ?";
     db.query(fetchStreakSql, [UN], (err, result) => {
         if (err) {
@@ -103,7 +103,7 @@ app.post('/increment-streak', (req, res) => {
             const currentStreak = result[0].Streak;
             const newStreak = currentStreak + 1;
 
-            // Update the streak in the database
+            
             const updateStreakSql = "UPDATE gameusers SET Streak = ? WHERE Username = ?";
             db.query(updateStreakSql, [newStreak, UN], (updateErr) => {
                 if (updateErr) {
@@ -119,16 +119,15 @@ app.post('/increment-streak', (req, res) => {
     });
 });
 
-// Route: Get and reset streak if lost
 app.post('/reset-streak', (req, res) => {
     if (!UN) {
         return res.json({ success: false, message: "User not logged in" });
     }
 
-    const { lost } = req.body; // Expecting `lost` to be passed as part of the request body
+    const { lost } = req.body; 
 
     if (!lost) {
-        // If the game is not lost, just return the current streak
+        
         const fetchStreakSql = "SELECT Streak FROM gameusers WHERE Username = ?";
         db.query(fetchStreakSql, [UN], (err, result) => {
             if (err) {
@@ -143,7 +142,7 @@ app.post('/reset-streak', (req, res) => {
             }
         });
     } else {
-        // If the game is lost, reset the streak to 0
+        
         const resetStreakSql = "UPDATE gameusers SET Streak = 0 WHERE Username = ?";
         db.query(resetStreakSql, [UN], (err, result) => {
             if (err) {
@@ -158,15 +157,15 @@ app.post('/reset-streak', (req, res) => {
 
 
 
-// Load wordlist data
+
 const wordlistData = JSON.parse(fs.readFileSync(path.join(__dirname, 'wordlist.json'), 'utf8'));
 
-// Route: Get wordlist data
+
 app.get('/data', (req, res) => {
     res.json(wordlistData);
 });
 
-// Route: Register user
+
 app.post('/register', (req, res) => {
     const sql = "INSERT INTO gameusers (`Email`, `Username`, `Password`) VALUES (?)";
     const values = [
@@ -180,7 +179,7 @@ app.post('/register', (req, res) => {
     });
 });
 
-// Route: Login user
+
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM gameusers WHERE Username = ? AND Password = ?";
     db.query(sql, [req.body.Username, req.body.Password], (err, result) => {
@@ -194,19 +193,19 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Route: Logout user
+
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             return res.json({ Message: "Logout failed", Success: false });
         } else {
-            res.clearCookie('connect.sid'); // Clear the session cookie
+            res.clearCookie('connect.sid'); 
             return res.json({ Message: "Logout successful", Success: true });
         }
     });
 });
 
-// Start server
+
 app.listen(8081, () => {
     console.log("Connected to server on port 8081");
 });

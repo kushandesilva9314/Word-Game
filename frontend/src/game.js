@@ -1,16 +1,16 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom"; // For navigation
-import { FaArrowLeft } from "react-icons/fa"; // Back icon
+import { Link } from "react-router-dom"; 
+import { FaArrowLeft } from "react-icons/fa"; 
 import Gamebox from "./components/Gamebox";
 
 const Game = () => {
   return (
     <div
       style={{
-        backgroundColor: "#1A202C", // Dark theme background
+        backgroundColor: "#1A202C", 
         minHeight: "100vh",
-        color: "#E2E8F0", // Light text for dark theme
+        color: "#E2E8F0", 
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -20,11 +20,11 @@ const Game = () => {
         <div
           className="d-flex align-items-center my-4"
           style={{
-            borderBottom: "2px solid #4A5568", // Subtle underline for separation
+            borderBottom: "2px solid #4A5568", 
             paddingBottom: "1rem",
           }}
         >
-          {/* Back Icon */}
+          {}
           <Link
             to="/home"
             className="text-decoration-none me-3"
@@ -34,7 +34,7 @@ const Game = () => {
             <span style={{ fontSize: "1rem", fontWeight: "500" }}>Back</span>
           </Link>
 
-          {/* Game Title */}
+          {}
           <h1
             className="text-center flex-grow-1"
             style={{
@@ -43,15 +43,15 @@ const Game = () => {
               fontWeight: "700",
               textTransform: "uppercase",
               margin: "0 auto",
-              color: "#63B3ED", // Accent color
-              textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)", // Subtle glow
+              color: "#63B3ED", 
+              textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)", 
             }}
           >
             Word Guesser
           </h1>
         </div>
 
-        {/* Game Box */}
+        {}
         <div className="text-center mt-5">
           <Gamebox />
         </div>

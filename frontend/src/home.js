@@ -16,7 +16,7 @@ const Home = () => {
   const [showTooltipS, setShowTooltipS] = useState(false);
   const [tooltipTimeoutS, setTooltipTimeoutS] = useState(null);
   useEffect(() => {
-    // Fetch username
+    
     axios
       .get("http://localhost:8081/home")
       .then((res) => {
@@ -28,7 +28,7 @@ const Home = () => {
       })
       .catch((err) => console.log(err));
 
-    // Fetch country list from Restcountries API
+    
     axios
       .get("https://restcountries.com/v3.1/all")
       .then((res) => {
@@ -42,10 +42,10 @@ const Home = () => {
   }, []);
 
   axios
-    .get("http://localhost:8081/streak") // Replace with your actual streak API endpoint
+    .get("http://localhost:8081/streak") 
     .then((res) => {
       if (res.data.success) {
-        setStreak(res.data.streak); // Assuming the API response includes a "streak" field
+        setStreak(res.data.streak); 
       } else {
         console.log("Failed to fetch streak");
       }
@@ -56,40 +56,39 @@ const Home = () => {
   axios.defaults.withCredentials = true;
 
   const handleMouseEnter = () => {
-    // Set a timeout for 2 seconds before showing the tooltip
+   
     const timeout = setTimeout(() => {
       setShowTooltip(true);
-    }, 2000); // 2000ms = 2 seconds
+    }, 2000); 
 
     setTooltipTimeout(timeout);
   };
 
   const handleMouseLeave = () => {
-    // Clear the timeout when mouse leaves the button
+    
     clearTimeout(tooltipTimeout);
     setShowTooltip(false);
   };
 
   const handleMouseEnterS = () => {
-    // Set a timeout for 2 seconds before showing the tooltip
+    
     const timeout = setTimeout(() => {
       setShowTooltipS(true);
-    }, 2000); // 2000ms = 2 seconds
-
+    }, 2000); 
     setTooltipTimeoutS(timeout);
   };
 
   const handleMouseLeaveS = () => {
-    // Clear the timeout when mouse leaves the button
+    
     clearTimeout(tooltipTimeoutS);
     setShowTooltipS(false);
   };
 
   const quit = () => {
     axios
-      .post("http://localhost:8081/logout") // Replace with your actual logout endpoint
+      .post("http://localhost:8081/logout") 
       .then(() => {
-        navigate("/"); // Redirect to login page after logout
+        navigate("/"); 
       })
       .catch((err) => console.error("Logout failed:", err));
   };
@@ -102,20 +101,20 @@ const Home = () => {
     navigate("/specialmode");
   };
 
-  // Handler to set the selected country
+  
   const handleCountryChange = (e) => {
     const countryName = e.target.value;
     const country = countries.find((c) => c.name.common === countryName);
     setSelectedCountry(country);
   };
 
-  // Disable special mode if streak is less than 4
+ 
   const isSpecialModeDisabled = Streak < 4;
 
   return (
     <div className="containe">
       <header className="header">
-        {/* Country Selection */}
+        {}
         <div className="country-selector">
           <label htmlFor="country" className="country-label">
             Select Country:
@@ -140,7 +139,7 @@ const Home = () => {
           </select>
         </div>
 
-        {/* Username and Streak */}
+        {}
         <div className="username">Username: {name}</div>
         <div className="streak">
           <span role="img" aria-label="streak">
