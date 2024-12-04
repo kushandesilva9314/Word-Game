@@ -1,8 +1,7 @@
 import React from 'react'
 import {Container} from 'react-bootstrap'
 
-//6 chances
-//5 letter words
+
 function Boxes({lives}) {
     const lifeCount=Array.from(Array(parseInt(lives)).keys());
   return (

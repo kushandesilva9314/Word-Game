@@ -1,8 +1,8 @@
-// src/LoginPage.js
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import './login.css'; // Import the CSS file
+import './login.css'; 
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'

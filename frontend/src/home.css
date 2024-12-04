@@ -1,13 +1,11 @@
-/* Global Styles */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background-color: #1a202c; /* Dark background for the body */
+  background-color: #1a202c;
 }
 
-/* Main container */
 .containe {
   background: url('./images/homeBG.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -22,47 +20,43 @@ body, html {
   position: relative;
 }
 
-/* Header with username, streak, and country selection */
 .header {
   position: absolute;
   top: 20px;
-  right: 20px; /* Aligns the username to the top right */
+  right: 20px;
   width: 100%;
   display: flex;
-  justify-content: flex-end; /* Aligns content to the right */
+  justify-content: flex-end;
   padding: 0 20px;
   z-index: 10;
 }
 
-/* Username */
 .username {
   font-size: 1.8em;
   font-weight: 600;
-  color: #63b3ed; /* Accent color for username */
-  text-align: right; /* Aligns text to the right */
-  z-index: 10; /* Make sure username stays on top */
-  margin-left: auto; /* Ensures it aligns to the right */
+  color: #63b3ed;
+  text-align: right;
+  z-index: 10;
+  margin-left: auto;
 }
 
-/* Streak */
 .streak {
   font-size: 2em;
   font-weight: 700;
   color: #fbbf24;
   position: absolute;
-  right: 20px; /* Keeps it on the right */
-  top: 50%; /* Centers it vertically */
-  transform: translateY(-50%); /* Adjusts vertical alignment */
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
 }
 
 .streak span {
   margin-right: 0.5rem;
-  font-size: 2.2rem; /* Larger size for the streak flame icon */
+  font-size: 2.2rem;
 }
 
-/* Country Selection */
 .country-selector {
   display: flex;
   flex-direction: column;
@@ -81,54 +75,49 @@ body, html {
   font-size: 1.2em;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   width: 200px;
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0.6); /* Ensure dropdown background is dark */
   transition: background-color 0.3s;
 }
 
 .country-dropdown:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.1); /* Lighten background on focus */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .country-dropdown option {
-  background-color: #333; /* Dark background for options */
-  color: #fff; /* Light text color */
-  padding: 8px; /* Padding for readability */
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
 }
 
 .country-dropdown option:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Highlight option on hover */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .country-dropdown:disabled {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Country Information Display */
 .country-info {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 8px;
   max-width: 600px;
   width: 100%;
-  position: absolute; /* Position relative to its nearest positioned ancestor */
-  top: 20px; /* Move it to the top of the screen */
-  left: 50%; /* Center it horizontally */
-  transform: translateX(-50%); /* Offset by 50% of its width to center it */
-  z-index: 10; /* Ensure it's on top of other elements */
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 .country-info h5 {
   color: #fbbf24;
 }
 
-
-
-/* Main content area with buttons */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -136,7 +125,6 @@ body, html {
   z-index: 10;
 }
 
-/* Button Styles */
 .button {
   padding: 20px 40px;
   font-size: 1.2em;
@@ -156,7 +144,6 @@ body, html {
   transform: translateY(-5px);
 }
 
-/* Specific Button Styles for Different Actions */
 .button.play {
   background-color: rgba(34, 193, 195, 0.8);
 }
@@ -181,7 +168,6 @@ body, html {
   background-color: rgba(255, 59, 48, 1);
 }
 
-/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
   .main-content {
     gap: 15px;
@@ -212,18 +198,8 @@ body, html {
     width: 100%;
   }
 }
-/* Button Styles for Special Mode */
-.button.special {
-  background-color: rgba(248, 113, 29, 0.8);
-}
 
-.button.special:hover {
-  background-color: rgba(248, 113, 29, 1);
-}
-
-/* Lock/Unlock icon styling */
 .button.special span[aria-label="streak"] {
-  margin-right: 10px; /* Space between the icon and text */
-  font-size: 1.5em; /* Adjust icon size */
+  margin-right: 10px;
+  font-size: 1.5em;
 }
-
